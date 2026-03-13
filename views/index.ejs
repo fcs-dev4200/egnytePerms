@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fix Permissions</title>
+  <link rel="stylesheel" href="/css/index.css">
+</head>
+
+<body>
+
+  <div id="loading-screen">
+
+    <div class="spinner"></div>
+    <p>Changing Perms, please wait...</p>
+  </div>
+
+  <section class="header">
+    <h1>Fix permissions on Egnyte</h1>
+  </section>
+
+  <div class="input-form">
+    <form action="/fixit" method="POST" id="form">
+      <label for="path" class="folder-label">Folder you need access to: </label>
+      <input type="text" name="path" id="path" placeholder="Alva, OK - 12824" />
+      <label for="directory">Directory of folder</label>
+      <select name="directory" id="dir-select">
+        <option value="Projects">Projects</option>
+        <option value="Restoration & Maintenance">Restoration & Maintenance</option>
+        <option value="ProjectsTest">ProjectsTest</option>
+      </select>
+      <button type="submit" class="submit">Fix It</button>
+    </form>
+  </div>
+
+  <script scr="/js/load.js"></script>
+</body>
+
+</html>
