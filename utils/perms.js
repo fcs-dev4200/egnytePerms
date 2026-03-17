@@ -30,6 +30,12 @@ const readPerms = JSON.stringify({
   groupPerms: {
     "ZPI-READ": "Viewer",
     "ZPI-WRITE": "Viewer",
+    "INT-ENGINEERING": "Full",
+    "INT-ACCOUNTING": "Full",
+    "INT-DESIGN": "Full",
+    "INT-SALES": "Editor",
+    "INT-PROJECT_MANAGEMENT": "Full",
+    "INT-MANAGEMENT": "Full",
   },
 });
 
@@ -37,10 +43,16 @@ const writePerms = JSON.stringify({
   groupPerms: {
     "ZPI-READ": "Viewer",
     "ZPI-WRITE": "Full",
+    "INT-ENGINEERING": "Full",
+    "INT-ACCOUNTING": "Full",
+    "INT-DESIGN": "Full",
+    "INT-SALES": "Editor",
+    "INT-PROJECT_MANAGEMENT": "Full",
+    "INT-MANAGEMENT": "Full",
   },
 });
 
-const read_folders = ["6. Engineering", "7. Submittals and Approvals"];
+const read_folders = ["6. Engineering", "7. Submittals & Approvals"];
 
 const write_folders = ["12. Solidworks Files"];
 
@@ -48,56 +60,52 @@ const write_folders = ["12. Solidworks Files"];
 const options = {
   restrict_move_delete: "false",
 };
-
+const touchedFiles = [];
 export async function getFiles(path) {
-  let touchedFiles = [];
-  let moreFolders = true;
-  let folderArray = [];
-  while (moreFolders) {
-    try {
-      const req = await axios.get(`${fsURL}${path}`, { headers });
-      if (req.status !== 200) {
-        console.log("there was an error fetching data", req.status);
-      }
-      const { data } = req;
-      const { folders, name } = req.data;
-      const route = req.data.path;
-      if (touchedFiles.includes(route)) {
-        continue;
-      }
-      setPerms(route);
-      // touchedFiles.push(route);
-      // console.log(touchedFiles);
-      await setTimeout(3000);
-      setOptions(route);
-      await setTimeout(3000);
-      for (const i of folders) {
-        const newPath = `${i.path}`;
-        getFiles(newPath);
-        if (read_folders.includes(i.name)) {
-          setZRead(newPath);
-          await setTimeout(3000);
-        } else if (write_folders.includes(i.name)) {
-          setZWrite(newPath);
-          await setTimeout(3000);
-        } else {
-          continue;
-        }
-        await setTimeout(3000);
-      }
-      if (!folders) {
-        moreFolders = false;
-      }
-    } catch (err) {
-      console.log("error", err);
-      break;
-    }
+  if (touchedFiles.includes(path)) {
+    return;
   }
-  console.log("finished");
+
+  try {
+    const req = await axios.get(`${fsURL}${path}`, { headers });
+
+    if (req.status !== 200) {
+      console.log("there was an error fetching data", req.status);
+      return;
+    }
+
+    const { data } = req;
+    const { folders } = req.data;
+    const route = req.data.path;
+
+    setPerms(route);
+    // touchedFiles.add(route);
+
+    setTimeout(3000);
+    setOptions(route);
+    setTimeout(3000);
+    for (const folder of folders) {
+      const newPath = folder.path;
+      const folderName = folder.name.trim();
+
+      if (read_folders.includes(folderName)) {
+        setZRead(newPath);
+        setTimeout(3000);
+      } else if (write_folders.includes(folderName)) {
+        setZWrite(newPath);
+        setTimeout(3000);
+      }
+
+      await getFiles(newPath);
+    }
+  } catch (err) {
+    return;
+  }
+  return "complete";
 }
 
 // Sets permissions
-async function setPerms(path) {
+export async function setPerms(path) {
   try {
     const reqURL = permURL + path;
     const req = await axios.post(reqURL, data, { headers });
@@ -112,7 +120,7 @@ async function setPerms(path) {
 }
 
 // Sets move options
-async function setOptions(path) {
+export async function setOptions(path) {
   try {
     const reqURL = fsURL + path;
     const req = await axios.patch(reqURL, options, { headers });
@@ -127,7 +135,7 @@ async function setOptions(path) {
 }
 
 // Set Zephyr Read permissions
-async function setZRead(path) {
+export async function setZRead(path) {
   try {
     const reqURL = permURL + path;
     const req = await axios.post(reqURL, readPerms, { headers });
@@ -142,7 +150,7 @@ async function setZRead(path) {
 }
 
 // Set Zephyr Write permissions
-async function setZWrite(path) {
+export async function setZWrite(path) {
   try {
     const reqURL = permURL + path;
     const req = await axios.post(reqURL, writePerms, { headers });
@@ -155,5 +163,3 @@ async function setZWrite(path) {
     console.log("error", err);
   }
 }
-
-// getFiles("/Shared/ProjectsTest/Austin, TX - Dell JCC - 10621 & 30621");/
