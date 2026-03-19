@@ -1,31 +1,99 @@
-#loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+.header {
+  border-bottom: black 1px solid;
+  height: 100px;
+  background-color: rgb(14 77 102 / var(--tw-bg-opacity, 1));
+  color: white;
+}
+
+h1.header {
+  color: white;
+  align-content: center;
+}
+
+p {
+  margin-left: 30px;
+  color: whitesmoke;
+  font-family: "Lucida Console", Monaco, monospace;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+#splash-img {
   height: 100%;
-  background-color: #fff; /* Choose a background color */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Ensures it is on top of other content */
+  /* border-right: 2px solid black; */
+  padding-right: 10px;
 }
 
-/* Example CSS spinner animation */
+#zpi-img {
+  padding-left: 10px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(14 77 102 / var(--tw-bg-opacity, 1));
+  text-align: center;
+}
+
 .spinner {
-  border: 10px solid #f3f3f3;
-  border-top: 10px solid #3498db; /* The colorful part of the spinner */
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgb(14 77 102 / var(--tw-bg-opacity, 1));
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
-@keyframes spin {
+.spinner::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-bottom-color: #ff3d00;
+}
+
+@keyframes rotation {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
+}
+
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+}
+
+p.loading-text {
+  color: black;
+}
+
+.loader-text {
+  position: absolute;
+  top: 340px;
+  left: 700px;
+  display: none;
+}
+
+#main-content {
+  display: block;
 }

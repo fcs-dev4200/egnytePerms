@@ -4,37 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete</title>
-  <link rel="stylesheet" href="/css/complete.css" </head>
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/login.css">
+
+</head>
 
 <body>
-
   <section id="header">
     <span id="splash-img">
       <img class="splash img" src="https://splashtacular.com/wp-content/uploads/2026/02/Logo-SVG-1.svg">
     </span>
-    <span id="zpi-img"><img class="zpi img"
+    <span id="zpi-img"><img class="zpi imng"
         src="https://zpi.com/wp-content/uploads/2018/06/Zephyr-Horizontal-02.png"></span>
-
     <h1 class="header">
-      <p>Permission changes have been completed</p>
+      <p>Please Login to fix permissions</p>
     </h1>
   </section>
 
-  <div class="back"><a href="/">Change more permissions</a></div>
-
-  <div class="folder-list">
-    <h1 class="list-head">Folders Modified</h1>
-    <ul>
-      <% folders.forEach(folder=> { %>
-        <li>
-          <p>
-            <%= folder %>
-          </p>
-        </li>
-        <%});%>
-    </ul>
-  </div>
+  <form action="/log-in" method="POST">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" />
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" />
+    <button type="submit">Login</button>
+  </form>
   <%- include('partials/footer') %>
 
 </body>

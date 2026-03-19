@@ -1,7 +1,7 @@
 import express, { application } from "express";
 import "dotenv/config";
 import axios from "axios";
-import { setTimeout } from "timers/promises";
+import { setTimeout as delay } from "node:timers/promises";
 import { json } from "stream/consumers";
 import path from "path";
 const app = express();
@@ -54,17 +54,17 @@ const writePerms = JSON.stringify({
 
 const read_folders = ["6. Engineering", "7. Submittals & Approvals"];
 
-const write_folders = ["12. Solidworks Files"];
+const write_folders = ["12. Solidworks Files", "12. Solidworks files"];
 
 // Enabled users with Full access to move items
 const options = {
   restrict_move_delete: "false",
 };
-const touchedFiles = [];
-export async function getFiles(path) {
-  if (touchedFiles.includes(path)) {
-    return;
-  }
+export async function getFiles(path, touchedFiles = []) {
+  // let touchedFiles = [];
+  // if (touchedFiles.includes(path)) {
+  //   return;
+  // }
 
   try {
     const req = await axios.get(`${fsURL}${path}`, { headers });
@@ -78,30 +78,36 @@ export async function getFiles(path) {
     const { folders } = req.data;
     const route = req.data.path;
 
-    setPerms(route);
-    // touchedFiles.add(route);
+    await setPerms(route);
+    touchedFiles.push(route);
 
-    setTimeout(3000);
-    setOptions(route);
-    setTimeout(3000);
+    await delay(3000);
+    await setOptions(route);
+    await delay(3000);
+    if (!folders) {
+      return touchedFiles;
+    }
     for (const folder of folders) {
       const newPath = folder.path;
       const folderName = folder.name.trim();
 
       if (read_folders.includes(folderName)) {
-        setZRead(newPath);
-        setTimeout(3000);
+        await setZRead(newPath);
+        await delay(3000);
       } else if (write_folders.includes(folderName)) {
-        setZWrite(newPath);
-        setTimeout(3000);
+        await setZWrite(newPath);
+        await delay(3000);
       }
 
-      await getFiles(newPath);
+      await getFiles(newPath, touchedFiles);
     }
+    // const text = "this the returned text";
+    // return text;
   } catch (err) {
+    console.log("caught error:", err);
     return;
   }
-  return "complete";
+  return touchedFiles;
 }
 
 // Sets permissions

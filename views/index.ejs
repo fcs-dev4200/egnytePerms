@@ -5,29 +5,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fix Permissions</title>
-  <link rel="stylesheel" href="/css/index.css">
+  <link rel="stylesheet" href="/css/index.css">
 </head>
 
 <body>
-  <section class="header">
-    <h1>Fix permissions on Egnyte</h1>
-  </section>
+  <span class="loader-text">
+    <p class="loading-text">Fixing requested permissions. Please wait...</p>
+  </span>
 
-  <div class="input-form">
-    <form action="/fixit" method="POST" id="form">
-      <label for="path" class="folder-label">Folder you need access to: </label>
-      <input type="text" name="path" id="path" placeholder="Alva, OK - 12824" />
-      <label for="directory">Directory of folder</label>
-      <select name="directory" id="dir-select">
-        <option value="Projects">Projects</option>
-        <option value="Restoration & Maintenance">Restoration & Maintenance</option>
-        <option value="ProjectsTest">ProjectsTest</option>
-      </select>
-      <button type="submit" class="submit">Fix It</button>
-    </form>
+
+  <div class="loader-container">
+    <div class="spinner"></div>
   </div>
 
-  <script scr="/js/load.js"></script>
+  <div id="main-content">
+    <section id="header">
+      <span id="splash-img">
+        <img class="splash img" src="https://splashtacular.com/wp-content/uploads/2026/02/Logo-SVG-1.svg">
+      </span>
+      <span id="zpi-img"><img class="zpi img"
+          src="https://zpi.com/wp-content/uploads/2018/06/Zephyr-Horizontal-02.png"></span>
+
+      <h1 class="header">
+        <p>Fix permissions on Egnyte</p>
+      </h1>
+    </section>
+
+    <div class="input-form">
+      <form action="/fixit" method="POST" id="form">
+        <label for="path" class="folder-label">Folder you need access to: </label>
+        <input type="text" name="path" id="path" placeholder="Alva, OK - 12824" />
+        <label for="directory">Directory of folder</label>
+        <select name="directory" id="dir-select">
+          <option value="Projects">Projects</option>
+          <option value="Restoration & Maintenance">Restoration & Maintenance</option>
+          <option value="ProjectsTest">ProjectsTest</option>
+        </select>
+        <button type="submit" class="submit">Fix It</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/load.js"></script>
+  <%- include('partials/footer') %>
 </body>
 
 </html>

@@ -1,0 +1,58 @@
+.folder-list {
+  padding-top: 30px;
+  place-items: center;
+}
+
+.list-head {
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
+}
+
+li {
+  padding-right: 15px;
+  border-bottom: 1px solid black;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  margin-left: 30px;
+  color: black;
+  font-family: "Lucida Console", Monaco, monospace;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.header {
+  border-bottom: black 1px solid;
+  height: 100px;
+  background-color: rgb(14 77 102 / var(--tw-bg-opacity, 1));
+  color: white;
+}
+
+.header {
+  color: white;
+  align-content: center;
+}
+
+h1 p {
+  color: white;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(14 77 102 / var(--tw-bg-opacity, 1));
+  text-align: center;
+}
+
+.back {
+  position: relative;
+  left: 3px;
+}

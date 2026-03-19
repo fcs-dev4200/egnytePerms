@@ -150,6 +150,7 @@ let readArr = [];
 let writeArr = [];
 
 const format = (i) => {
+  let arr = [];
   const { path } = i;
   const { folders } = i;
   if (!folders) {
@@ -159,7 +160,6 @@ const format = (i) => {
 };
 
 function test(data) {
-  let arr = [];
   if (arr.includes(data.path)) {
     console.log("path alreaedy added");
     return;
@@ -202,7 +202,7 @@ function test(data) {
   console.log("final array", arr);
 }
 
-test(testObj);
+// test(testObj);
 
 function combineStrings(data) {
   let moreFolders = true;
@@ -310,3 +310,16 @@ function setWrite(path) {
 // console.log(data.folders);
 
 // combineStrings(testObj);
+
+function getArray() {
+  let touchedFiles = [];
+  const path = "this is the path";
+  touchedFiles.push(path);
+  return touchedFiles;
+}
+
+function test2() {
+  console.log(getArray.touchedFiles);
+}
+
+test2();

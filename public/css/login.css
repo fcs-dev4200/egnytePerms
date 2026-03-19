@@ -1,0 +1,29 @@
+.header {
+  border-bottom: black 1px solid;
+  height: 100px;
+  background-color: rgb(14 77 102 / var(--tw-bg-opacity, 1));
+  color: white;
+}
+
+h1.header {
+  align-content: center;
+}
+
+p {
+  margin-left: 30px;
+  color: whitesmoke;
+  font-family: "Lucida Console", Monaco, monospace;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(14 77 102 / var(--tw-bg-opacity, 1));
+  text-align: center;
+}

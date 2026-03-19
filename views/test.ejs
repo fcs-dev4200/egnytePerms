@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete</title>
-  <link rel="stylesheet" href="/css/complete.css" </head>
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/test.css">
+</head>
 
 <body>
 
@@ -23,16 +24,24 @@
 
   <div class="back"><a href="/">Change more permissions</a></div>
 
+
   <div class="folder-list">
-    <h1 class="list-head">Folders Modified</h1>
+    <h1 class='list-head'>
+      Folders Modified
+    </h1>
     <ul>
-      <% folders.forEach(folder=> { %>
-        <li>
-          <p>
-            <%= folder %>
-          </p>
-        </li>
-        <%});%>
+      <li>
+        <p>/Shared/ProjectsTest/FCS-Test</p>
+      </li>
+      <li>
+        <p>/Shared/ProjectsTest/FCS-Test/1. Bid Docs</p>
+      </li>
+      <li>
+        <p>/Shared/ProjectsTest/FCS-Test/1. Bid Docs</p>
+      </li>
+      <li>
+        <p>/Shared/ProjectsTest/FCS-Test/12. Solidworks files</p>
+      </li>
     </ul>
   </div>
   <%- include('partials/footer') %>

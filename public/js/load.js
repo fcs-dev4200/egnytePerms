@@ -1,7 +1,12 @@
-// window.onload = function () {
-//   // Hide the loading screen
-//   document.getElementById("loading-screen").style.display = "none";
+const button = document.querySelector(".submit");
+const spinner = document.querySelector(".loader-container");
+const loadText = document.querySelector(".loader-text");
+const content = document.querySelector("#main-content");
 
-//   // Show the main content
-//   document.getElementById("content").style.display = "block";
-// };
+button.addEventListener("click", (e) => {
+  // e.preventDefault();
+
+  loadText.style.display = "flex";
+  spinner.style.display = "flex";
+  content.style.display = "none";
+});
