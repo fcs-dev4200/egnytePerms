@@ -50,7 +50,7 @@ app.post("/log-in", async (req, res) => {
   const userObj = { username };
   if (match && username === loginUser) {
     req.session.user = userObj;
-    const sesh = req.session;
+    // const sesh = req.session;
     const cookie = sesh.cookie;
     res.redirect("/");
   } else {
@@ -66,7 +66,7 @@ function handle(req, res) {
 }
 
 const port = 8000;
-app.listen(port, (err) => {
+app.listen(process.env.PORT || port, (err) => {
   if (err) {
     throw err;
   }
