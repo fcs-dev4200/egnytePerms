@@ -99,7 +99,7 @@ export async function getFiles(path, touchedFiles = []) {
       await getFiles(newPath, touchedFiles);
     }
   } catch (err) {
-    console.log("caught error:", err);
+    console.log("There was an error changing permissions", err);
     return;
   }
   return touchedFiles;
@@ -116,7 +116,7 @@ export async function setPerms(path) {
       console.log("error changing permissions");
     }
   } catch (err) {
-    console.log("error", err);
+    console.log("error setting permissions", err);
   }
 }
 
@@ -131,7 +131,7 @@ export async function setOptions(path) {
       console.log("error changing options");
     }
   } catch (err) {
-    console.log("error", err);
+    console.log("error setting options", err);
   }
 }
 
@@ -146,7 +146,7 @@ export async function setZRead(path) {
       console.log("error changing read perms");
     }
   } catch (err) {
-    console.log("error", err);
+    console.log("error setting Read permissions", err);
   }
 }
 
@@ -161,6 +161,6 @@ export async function setZWrite(path) {
       console.log("error changing read perms");
     }
   } catch (err) {
-    console.log("error", err);
+    console.log("error setting Write permissions", err);
   }
 }

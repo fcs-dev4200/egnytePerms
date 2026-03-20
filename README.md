@@ -39,7 +39,7 @@ export async function setPerms(path) {
       console.log("error changing permissions");
     }
   } catch (err) {
-    console.log("error", err);
+    console.log("error setting permissions", err);
   }
 }
 ```
@@ -72,7 +72,7 @@ export async function setOptions(path) {
       console.log("error changing options");
     }
   } catch (err) {
-    console.log("error", err);
+    console.log("error setting options", err);
   }
 }
 ```
@@ -87,6 +87,18 @@ const options = {
 Lastly, the script checks if the name of the current folder matches a ZPI folder. If so, it sets the special permisisons:
 
 ```javascript
+// Folders that require special permissions
+const read_folders = ["6. Engineering", "7. Submittals & Approvals"];
+const write_folders = ["12. Solidworks Files", "12. Solidworks files"];
+
+// Read Perms
+"ZPI-READ": "Viewer",
+"ZPI-WRITE": "Viewer",
+
+// Write Perms
+"ZPI-READ": "Viewer",
+"ZPI-WRITE": "Full",
+
 // Set Zephyr Read permissions
 export async function setZRead(path) {
   try {
@@ -98,7 +110,7 @@ export async function setZRead(path) {
       console.log("error changing read perms");
     }
   } catch (err) {
-    console.log("error", err);
+    console.log("error setting Read permissions", err);
   }
 }
 
@@ -113,12 +125,12 @@ export async function setZWrite(path) {
       console.log("error changing read perms");
     }
   } catch (err) {
-    console.log("error", err);
+    console.log("error setting Write permissions", err);
   }
 }
 ```
 
-The script then checks to see there are any more folders, and if not, returns an array of all the folders modified. The full app with a rundown is below"
+The script then checks to see there are any more folders, and if not, returns an array of all the folders modified. The full app with a rundown is below:
 
 ```javascript
 // Touched files array populated with modified paths
