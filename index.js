@@ -90,7 +90,7 @@ app.post("/fixit", async (req, res) => {
     const path = `/Shared/${directory}/${startPath}`;
     const response = await getFiles(path);
     // loading animation is done by js in EJS file.
-    console.log("test", response);
+    // console.log("test", response);
     res.render("complete", {
       folders: response,
     });

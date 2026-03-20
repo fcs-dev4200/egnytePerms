@@ -81,9 +81,9 @@ export async function getFiles(path, touchedFiles = []) {
     await setPerms(route);
     touchedFiles.push(route);
 
-    await delay(3000);
+    // await delay(3000);
     await setOptions(route);
-    await delay(3000);
+    // await delay(3000);
     if (!folders) {
       return touchedFiles;
     }
@@ -93,10 +93,10 @@ export async function getFiles(path, touchedFiles = []) {
 
       if (read_folders.includes(folderName)) {
         await setZRead(newPath);
-        await delay(3000);
+        // await delay(3000);
       } else if (write_folders.includes(folderName)) {
         await setZWrite(newPath);
-        await delay(3000);
+        // await delay(3000);
       }
 
       await getFiles(newPath, touchedFiles);
