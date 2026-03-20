@@ -17,7 +17,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
-app.use(pinoHttp({ logger }));
+// app.use(pinoHttp({ logger }));
 app.set("views", filePath);
 app.set("view engine", "ejs");
 
@@ -50,7 +50,7 @@ app.post("/log-in", async (req, res) => {
   const userObj = { username };
   if (match && username === loginUser) {
     req.session.user = userObj;
-    // const sesh = req.session;
+    const sesh = req.session;
     const cookie = sesh.cookie;
     res.redirect("/");
   } else {
