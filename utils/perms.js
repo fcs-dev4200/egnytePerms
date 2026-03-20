@@ -61,11 +61,6 @@ const options = {
   restrict_move_delete: "false",
 };
 export async function getFiles(path, touchedFiles = []) {
-  // let touchedFiles = [];
-  // if (touchedFiles.includes(path)) {
-  //   return;
-  // }
-
   try {
     const req = await axios.get(`${fsURL}${path}`, { headers });
 
@@ -80,6 +75,8 @@ export async function getFiles(path, touchedFiles = []) {
 
     await setPerms(route);
     touchedFiles.push(route);
+
+    // Delay was causing Heroku to time out. If Egnyte API doesn't care about delaying subsequent calls, leave this disabled
 
     // await delay(3000);
     await setOptions(route);
@@ -101,8 +98,6 @@ export async function getFiles(path, touchedFiles = []) {
 
       await getFiles(newPath, touchedFiles);
     }
-    // const text = "this the returned text";
-    // return text;
   } catch (err) {
     console.log("caught error:", err);
     return;
