@@ -17,7 +17,7 @@ A user should give you the full name of the folder in question. For example, "Y:
 ### How it works
 
 ```mermaid
-flowchard LR;
+flowchart LR;
   Permissions-and-folder-options-changed-on-root-folder-->checks-for-sub-folders-and-runs-if-present-->checks-for-folders-matching-ZPI-folder-names-->-applies-special-ZPI-perms-->users-have-access;
 ```
 
